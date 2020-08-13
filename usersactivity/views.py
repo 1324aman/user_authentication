@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from .forms import SignupForm
+from .forms import SignupForm, UpdateProfileForm
 from django.contrib import messages
 from django.contrib.auth.forms import(
 	AuthenticationForm,
@@ -75,10 +75,14 @@ def change_user_password(request):
 		return HttpResponseRedirect('login')
 
 
-class ProfileUpdate(UpdateView):
-    model = User
-    fields = ['first_name','last_name','email']
-    template_name = 'usersactivity/profile_update.html'
-
-    def get_success_url(request):
-    	return reverse('usersactivity:profile')
+def update_profile(request):
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			form = UpdateProfileForm(request.POST, instance=request.user)
+			if form.is_valid():
+				form.save()
+		else:
+			form = UpdateProfileForm(instance=request.user)
+		return render(request, 'usersactivity/profile_update.html', {'form':form})
+	else:
+		HttpResponseRedirect('login')

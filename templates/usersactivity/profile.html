@@ -22,18 +22,20 @@
 
 		</tr>
 
+
 			<tr>
 			<td><h6>EMAIL : </h6></td>
 			<td><h6>{{request.user.email}}</h6></td>
 
 		</tr>
 
+
 			<tr>
 			<td><a class="btn btn-outline-success" href="{% url 'usersactivity:logout' %}">Logout</a>
 </td>
-			<td><a class="btn btn-outline-warning" href="{% url 'usersactivity:profile_update' request.user.id %}">Update Profile</a>
+			<td><a class="btn btn-outline-warning" href="{% url 'usersactivity:profile_update' %}">Update Profile</a>
 </td>
-<td><a class="btn btn-secondary" href="{% url 'usersactivity:change_password' %}">Change Password</a>
+<td><a class="btn btn-outline-secondary" href="{% url 'usersactivity:change_password' %}">Change Password</a>
 </td>
 
 		</tr>
