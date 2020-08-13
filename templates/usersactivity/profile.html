@@ -1,0 +1,44 @@
+
+{% extends 'usersactivity/base.html' %}
+
+{% block content %}
+
+{% if messages %}
+
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+
+{% endif %}
+<div  class="container bg-light text-primary mt-5 px-5 py-5 text-center">
+
+	<table>
+		<tr >
+			<td><h4 class="ml-5">Welcome {{request.user.first_name}}</h4></td>
+		</tr>
+			<tr>
+			<td><h6>NAME : </h6></td>
+			<td><h6>{{request.user.get_full_name}}</h6></td>
+
+		</tr>
+
+			<tr>
+			<td><h6>EMAIL : </h6></td>
+			<td><h6>{{request.user.email}}</h6></td>
+
+		</tr>
+
+			<tr>
+			<td><a class="btn btn-outline-success" href="{% url 'usersactivity:logout' %}">Logout</a>
+</td>
+			<td><a class="btn btn-outline-warning" href="{% url 'usersactivity:profile_update' request.user.id %}">Update Profile</a>
+</td>
+<td><a class="btn btn-secondary" href="{% url 'usersactivity:change_password' %}">Change Password</a>
+</td>
+
+		</tr>
+	</table>
+	
+	
+</div>
+{% endblock %}
