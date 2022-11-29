@@ -13,6 +13,7 @@ We have used python 3.6, django, bootstrap , database - mysql
 5. python manage.py migrate
 6. python manage.py runserver
 # Project Structure
+```
 usersproject
     ├───static
     │   └───images
@@ -24,3 +25,4 @@ usersproject
     │   └───__pycache__
     └───usersproject
         └───__pycache__
+```
